@@ -2,26 +2,32 @@
 
 
 
-export function Tabs( { tasks })   {
+export function Tabs( { tasks, selectedTab, setTab })   {
     const openTasks = tasks.filter((task) => !task.complete);
-    const tabs = [
-        {type: 'All', count: tasks.length},
-        {type: 'Open', count: openTasks.length},
-        {type: 'Completed', count: tasks.length - openTasks.length}
-    ];
+    const tabs = ['All', 'Open', 'Completed'];
 
     return (
         <nav className="tab-container">
             {tabs.map(tab => {
+                const taskCount = tab === 'All'?
+                tasks.length:
+                tab === 'Completed'? 
+                tasks.filter(task => task.complete).length:
+                tasks.filter(task => !task.complete).length;
                 return (
-                    <button className="tab-button" key={tab.type}>
+                    <button 
+                        className={"tab-button " + (tab == selectedTab? ' tab-selected': '')} 
+                        key={tab}
+                        onClick={() => setTab(tab)}                   
+                    >
                         <h3>
-                            {tab.type}
-                            <span>(#{tab.count})</span>
+                            {tab}
+                            <span>(#{taskCount})</span>
                         </h3>
                     </button>
                 )
             })}
+            <hr />
         </nav>
     )
 }

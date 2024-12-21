@@ -1,9 +1,8 @@
 import { TodoCard } from './TodoCard'
 
 
-export function TodoList({tasks})  {
+export function TodoList({tasks, tab, removeTask, updateStatus})  {
 
-    const tab = 'All';
     const filteredTask = tab === 'All'?
         tasks:
         tab === 'Completed'? 
@@ -16,6 +15,9 @@ export function TodoList({tasks})  {
                 <TodoCard 
                     key={index}
                     task={task}
+                    index={tasks.findIndex(val => val.input === task.input)}
+                    updateStatus={updateStatus}
+                    removeTask={removeTask}
                 />
             )}
         </>
