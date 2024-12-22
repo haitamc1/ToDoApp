@@ -2,7 +2,7 @@
 
 
 export function Header( { tasks })    {
-    const openTasks = tasks.filter((task) => !task.complete);
+    const openTasks = tasks.filter(task => !task.complete);
     const taskOrTasks = openTasks.length === 1? 'Task': 'Tasks';
     return (
         <header>

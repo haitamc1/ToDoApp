@@ -16,6 +16,9 @@ export function TodoCard ( {task, index, updateStatus, removeTask} ) {
                 <button onClick={() => removeTask(index)}>
                     <h6>Delete</h6>
                 </button>
+                {/* <button onClick={() => editTask(index)}>
+                    <h6>Edit</h6>
+                </button> */}
             </div>
         </div>
     )
